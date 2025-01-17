@@ -17,6 +17,14 @@ type FormData = {
   rainfall: number
 }
 
+const cropList = [
+  'rice', 'maize', 'chickpea', 'kidneybeans', 'pigeonpeas',
+  'mothbeans', 'mungbean', 'blackgram', 'lentil', 'pomegranate',
+  'banana', 'mango', 'grapes', 'watermelon', 'muskmelon',
+  'apple', 'orange', 'papaya', 'coconut', 'cotton',
+  'jute', 'coffee'
+]
+
 export default function CropRecommendationSystem() {
   const [result, setResult] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -48,7 +56,9 @@ export default function CropRecommendationSystem() {
       }
 
       const result = await response.json()
-      setResult(result.prediction[0]) // Display the first prediction from the array
+      // Map the prediction index to the corresponding crop name
+      const cropName = cropList[result.prediction[0]]
+      setResult(cropName) // Display the first prediction from the array
       setError(null)
     } catch (err) {
       setError('An error occurred while fetching the recommendation. Please try again. +' + err )
