@@ -51,7 +51,7 @@ export default function CropRecommendationSystem() {
       setResult(result.prediction[0]) // Display the first prediction from the array
       setError(null)
     } catch (err) {
-      setError('An error occurred while fetching the recommendation. Please try again.')
+      setError('An error occurred while fetching the recommendation. Please try again. +' + err )
       setResult(null)
     }
   }
